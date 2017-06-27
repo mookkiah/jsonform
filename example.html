@@ -14,7 +14,8 @@
     <script type="text/javascript" src="deps/opt/jsv.js"></script>
     <script type="text/javascript" src="lib/jsonform.js"></script>
     <script type="text/javascript">
-      $('form').jsonForm({
+      $('form').jsonForm(
+    		  {
         schema: {
           name: {
             type: 'string',
@@ -24,7 +25,55 @@
           age: {
             type: 'number',
             title: 'Age'
+          },
+          "birthdate": {
+              "type": "string",
+              "title": "Birth date"
+          },
+          "friends": {
+          	"type": "array",
+          	"title" : "Friends",
+          	"items": {
+                "type": "object",
+                "title": "Friend",
+	          	"properties": {
+					"nick" : {
+						type: 'string',
+						title: 'Nick Name',
+						required: true
+					},
+					"gender" : {
+						type: 'string',
+						title: 'Gender',
+						required: true
+					},
+					"age": {
+						type: 'number',
+						title: 'Age',
+						required: true
+					}
+	          	}
+          	}
           }
+        },"form": ["*",{
+            "key": "birthdate",
+            "type": "date",
+            "fieldHtmlClass": "sensitive",
+          },
+          {
+        	    "type": "submit",
+        	    "title": "Submit This!"
+        	  }
+        ],
+        "value": {
+        	name:"Mahendran",
+        	age: 30,
+        	birthdate: "2017-06-16",
+        	"friends": [
+        	            { "nick": "tidoust", "gender": "male", "age": 34 },
+        	            { "nick": "titine", "gender": "female", "age": 6 },
+        	            { "nick": "E.T.", "gender": "alien" }
+        	          ]
         },
         onSubmit: function (errors, values) {
           if (errors) {
@@ -33,10 +82,13 @@
           else {
             $('#res').html('<p>Hello ' + values.name + '.' +
               (values.age ? '<br/>You are ' + values.age + '.' : '') +
+              JSON.stringify(values) +
               '</p>');
           }
         }
-      });
+      }
+    		  
+      );
     </script>
   </body>
 </html>
