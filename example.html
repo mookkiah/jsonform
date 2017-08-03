@@ -56,7 +56,7 @@
     		          	}
     		          }
     		        },
-    		        "form": ["*",
+    		        "form": ["*",  // customize it if required
     		          {
     		        	    "type": "submit",
     		        	    "title": "Submit This!"
@@ -67,7 +67,7 @@
     		          if (errors) {
     		            $('#res').html('<p>I beg your pardon?</p>');
     		          }
-    		          else {
+    		          else {  // send the result JSON to backend 
     		            $('#res').html('<p>Hello ' + values.name + '.' +
     		              (values.age ? '<br/>You are ' + values.age + '.' : '') +
     		              JSON.stringify(values) +
@@ -76,7 +76,7 @@
     		        }
     		      };
     
-    	var value = {
+    	var value = {   // retrive by making a REST call
 	        	name:"Mahendran",
 	        	age: 30,
 	        	birthdate: "2017-06-16",
